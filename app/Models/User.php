@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    private const PUBLIC_ID_LENGTH = 3;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +21,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
+        'public_id'
     ];
 
     /**
@@ -33,12 +37,23 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * Generating public random id for users
+     * 
+     * @return string
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public static function generateUniquePublicID()
+    {
+        $random_id = '';
+
+        do
+        {
+            $random_id = bin2hex(random_bytes(self::PUBLIC_ID_LENGTH));
+            $user = User::where('public_id', $random_id)->get();
+        }
+        while(!$user->isEmpty());
+
+        return $random_id;
+    }
 }
