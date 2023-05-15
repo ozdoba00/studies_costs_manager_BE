@@ -12,8 +12,7 @@ class Group extends Model
     use HasFactory;
 
     private const PUBLIC_ID_LENGTH = 4;
-
-
+    
     protected $fillable = [
         'name',
         'public_id'

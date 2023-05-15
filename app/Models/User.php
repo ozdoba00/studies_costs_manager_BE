@@ -57,5 +57,9 @@ class User extends Authenticatable
         return $random_id;
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'groups_users', 'user_id', 'group_id');
+    }
   
 }

@@ -19,7 +19,6 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade');
-
             $table->unique(['group_id', 'user_id']);
         });
     }

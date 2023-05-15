@@ -23,5 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
         Route::post('create', [GroupController::class, 'createGroup']);
         Route::post('join', [GroupController::class, 'joinUser']);
+        Route::get('show/{public_id}', [GroupController::class, 'show']);
+        Route::get('index', [GroupController::class, 'index']);
     });
 });
