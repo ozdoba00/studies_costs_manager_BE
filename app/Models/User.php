@@ -56,4 +56,6 @@ class User extends Authenticatable
 
         return $random_id;
     }
+
+  
 }

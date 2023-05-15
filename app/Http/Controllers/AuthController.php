@@ -6,7 +6,6 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Validator;
 
 class AuthController extends Controller
 {
