@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('groups_resources', function (Blueprint $table) {
             $table->id();
-            $table->string('public_id')->unique();
             $table->string('name');
-            $table->text('summary')->nullable();
+            $table->float('value');
+            $table->unsignedBigInteger('payed_by');
+            $table->unsignedBigInteger('must_pay')->nullable();
             $table->timestamps();
+            $table->foreign('payed_by')->references('id')->on('users');
+            $table->foreign('must_pay')->references('id')->on('users');
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('groups_resources');
     }
 };
